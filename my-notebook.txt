@@ -1,0 +1,82 @@
+Breakpoints:
+    sm (640px - 767px)
+    md (768px - 1023px)
+    lg (1024px - 1279px)
+    xl (1280px - 1535px)
+    2xl (1536px এবং এর বেশি)
+
+php artisan make:request RegisterRequest
+php artisan make:resource UserResource
+php artisan make:controller Auth/AuthController
+php artisan db:seed --class=AdminUserSeeder
+
+Admin Seeder:
+php artisan db:seed --class=AdminUserSeeder
+
+
+*laravel with vite project run:
+   composer install
+   npm install
+   php artisan key:generate
+
+   php artisan migrate
+   npm run dev
+   npm run build
+   php artisan serve
+   npm run dev & php artisan serve
+   php artisan storage:link
+   
+   php artisan migrate
+   php artisan migrate:rollback --step=2
+   php artisan make:seeder UsersTableSeeder
+   php artisan db:seed
+
+php artisan migrate:fresh
+
+npm run dev
+php artisan serve --host 192.168.10.239
+
+npm run dev -- --host 192.168.10.239 & php artisan serve --host 192.168.10.239
+sudo lsof -i :5174
+php artisan route:list
+npm run dev & php artisan serve
+
+php artisan make:component IssueListSuggation
+
+php artisan migrate:rollback --path=/database/migrations/2025_04_25_191949_create_patack_mela_registrations_table.php
+
+php artisan migrate --path=/database/migrations/2025_04_25_191949_create_patack_mela_registrations_table.php
+
+php artisan make:component Home/TomaderColumn
+
+
+
+
+# Create a class-based blade component
+php artisan make:controller Admin/PhatokMelaRegistration --resource
+
+# Create a class-based blade component in a subfolder
+php artisan make:controller Admin/AdminController 
+
+# Create an anonymous/inline blade component (view only)
+php artisan make:component forms.social-link --view
+php artisan make:component analysis.blog
+php artisan livewire:make  components.footer #create file inside folder
+Components/Blog/RelatedBlogsByTags
+
+# Create-for-model
+php artisan make:model Videos -m
+
+php artisan livewire:make user.profile
+
+php artisan make:controller SiteRefreshController
+php artisan make:controller Front/PatackMelaController --resource
+php artisan make:controller NoteController --resource
+
+
+php artisan livewire:make  Categories.Category-view
+
+php artisan make:model Library -m
+
+
+
