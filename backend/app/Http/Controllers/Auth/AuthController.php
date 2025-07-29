@@ -121,19 +121,19 @@ class AuthController extends Controller
         }
     }
 
-    // public function user(Request $request): JsonResponse
-    // {
-    //     try {
-    //         return response()->json([
-    //             'success' => true,
-    //             'data' => new UserResource($request->user()),
-    //         ]);
-    //     } catch (\Exception $e) {
-    //         return response()->json([
-    //             'success' => false,
-    //             'message' => 'Failed to get user data',
-    //             'error' => $e->getMessage(),
-    //         ], 500);
-    //     }
-    // }
+    public function user(Request $request): JsonResponse
+    {
+        try {
+            return response()->json([
+                'success' => true,
+                'data' => new UserResource($request->user()),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to get user data',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
 }
