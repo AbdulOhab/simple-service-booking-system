@@ -16,7 +16,7 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next, string $role): Response
     {
         // Check if the user is authenticated
-        if ($request->user()) {
+        if (! $request->user()) {
             return response()->json([
                 'success' => false,
                 'message' => 'Unauthorized. Please log in.',

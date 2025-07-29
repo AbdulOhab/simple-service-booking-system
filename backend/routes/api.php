@@ -20,13 +20,6 @@ Route::middleware('auth:sanctum')->group(function () {
             return response()->json([
                 'success' => true,
                 'message' => 'Welcome to customer Dashboard',
-                'data' => [
-                    'total_users' => 150,
-                    'total_customers' => 140,
-                    'total_admins' => 10,
-                    'total_orders' => 500,
-                    'monthly_revenue' => 15000.00,
-                ],
             ]);
         });
     });
@@ -37,14 +30,14 @@ Route::middleware('auth:sanctum')->group(function () {
             return response()->json([
                 'success' => true,
                 'message' => 'Welcome to Admin Dashboard',
-                'data' => [
-                    'total_users' => 150,
-                    'total_customers' => 140,
-                    'total_admins' => 10,
-                    'total_orders' => 500,
-                    'monthly_revenue' => 15000.00,
-                ],
             ]);
         });
+        // Admin Service Management
+        Route::post('/services', [AdminServiceController::class, 'store']);
+        Route::put('/services/{service}', [AdminServiceController::class, 'update']);
+        Route::delete('/services/{service}', [AdminServiceController::class, 'destroy']);
+
+        // Admin Booking Management
+        Route::get('/admin/bookings', [AdminBookingController::class, 'index']);
     });
 });
