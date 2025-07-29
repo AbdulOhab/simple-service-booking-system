@@ -21,6 +21,7 @@ class Booking extends Model
         'booking_date' => 'date',
     ];
 
+    // Relationships
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -31,6 +32,7 @@ class Booking extends Model
         return $this->belongsTo(Service::class);
     }
 
+    // Scopes
     public function scopePending($query)
     {
         return $query->where('status', 'pending');
@@ -39,5 +41,16 @@ class Booking extends Model
     public function scopeConfirmed($query)
     {
         return $query->where('status', 'confirmed');
+    }
+
+    public function scopeForUser($query, $userId)
+    {
+        return $query->where('user_id', $userId);
+    }
+
+    // Accessors
+    public function getTotalAmountAttribute()
+    {
+        return $this->service ? $this->service->price : 0;
     }
 }
