@@ -52,6 +52,9 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Handle Login Request
+     */
     public function login(LoginRequest $request): JsonResponse
     {
         try {
@@ -121,6 +124,9 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Get authenticated user details
+     */
     public function user(Request $request): JsonResponse
     {
         try {

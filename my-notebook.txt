@@ -9,6 +9,17 @@ php artisan make:request RegisterRequest
 php artisan make:resource UserResource
 php artisan make:controller Auth/AuthController
 php artisan db:seed --class=AdminUserSeeder
+php artisan make:model Service -m
+php artisan make:model Booking -m
+
+php artisan make:seeder ServiceSeeder
+
+php artisan make:controller Api/AuthController
+
+php artisan make:controller ServiceController --api
+php artisan make:controller BookingController --api
+php artisan make:controller Admin/ServiceController --api
+php artisan make:controller Admin/BookingController --api
 
 Admin Seeder:
 php artisan db:seed --class=AdminUserSeeder

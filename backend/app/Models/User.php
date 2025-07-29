@@ -67,18 +67,23 @@ class User extends Authenticatable
     // }
 
     // Helper methods
-    // public function isAdmin(): bool
-    // {
-    //     return $this->role === 'admin';
-    // }
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
 
-    // public function isCustomer(): bool
-    // {
-    //     return $this->role === 'customer';
-    // }
+    public function isCustomer(): bool
+    {
+        return $this->role === 'customer';
+    }
 
     // public function isActive(): bool
     // {
     //     return $this->is_active;
+    // }
+
+    // public function bookings()
+    // {
+    //     return $this->hasMany(Booking::class);
     // }
 }
