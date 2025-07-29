@@ -21,6 +21,11 @@ php artisan make:controller BookingController --api
 php artisan make:controller Admin/ServiceController --api
 php artisan make:controller Admin/BookingController --api
 
+
+php artisan make:request Customer/StoreBookingRequest
+php artisan make:request Customer/UpdateBookingRequest
+
+request
 Admin Seeder:
 php artisan db:seed --class=AdminUserSeeder
 Working With RemberMe
