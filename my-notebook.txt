@@ -24,3 +24,5 @@ php artisan make:controller Admin/BookingController --api
 
 php artisan make:request Customer/StoreBookingRequest
 php artisan make:request Customer/UpdateBookingRequest
+
+components/ProtectedRoute.jsx

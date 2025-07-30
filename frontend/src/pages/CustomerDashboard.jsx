@@ -22,7 +22,7 @@ export default function CustomerDashboard() {
 
                 // Check if user is customer
                 if (userResult.data.data.role !== 'customer') {
-                    navigate('/admin/dashboard');
+                    navigate('/customer/dashboard');
                     return;
                 }
 

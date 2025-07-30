@@ -19,12 +19,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Customer routes (will be added later)
     Route::middleware('role:customer')->group(function () {
-        Route::get('/dashboard', function () {
-            return response()->json([
-                'success' => true,
-                'message' => 'Welcome to customer Dashboard',
-            ]);
-        });
         // Customer Booking Routes
         Route::get('/bookings', [BookingController::class, 'index']);
         Route::post('/bookings', [BookingController::class, 'store']);
@@ -35,12 +29,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Admin routes (will be added later)
     Route::middleware('role:admin')->group(function () {
-        Route::get('/dashboard', function () {
-            return response()->json([
-                'success' => true,
-                'message' => 'Welcome to Admin Dashboard',
-            ]);
-        });
         // Admin Service Management
         Route::post('/services', [AdminServiceController::class, 'store'])->name('admin.services.store');
         Route::put('/services/{service}', [AdminServiceController::class, 'update'])->name('admin.services.update');
