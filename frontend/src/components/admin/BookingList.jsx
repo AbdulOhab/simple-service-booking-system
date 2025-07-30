@@ -47,7 +47,7 @@ export default function BookingList() {
                                 <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Booking Date</th>
                                 <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Total Amount</th>
                                 <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Status</th>
-                                <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Created At</th>
+                                <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Booking date</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100 dark:divide-[#2b2b2b]">

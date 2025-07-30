@@ -22,7 +22,7 @@ php artisan make:controller Admin/ServiceController --api
 php artisan make:controller Admin/BookingController --api
 
 
-php artisan make:request Customer/StoreBookingRequest
-php artisan make:request Customer/UpdateBookingRequest
+php artisan make:request Customer/ServiceController
+php artisan make:controller Customer/ServiceController
 
 components/ProtectedRoute.jsx

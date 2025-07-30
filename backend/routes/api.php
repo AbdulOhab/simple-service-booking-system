@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BookingController as AdminBookingController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Customer\BookingController;
+use App\Http\Controllers\Customer\ServiceController as CustomerServiceController;
 use Illuminate\Support\Facades\Route;
 
 // Public Router
@@ -25,6 +26,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/bookings/{booking}', [BookingController::class, 'show']);
         Route::put('/bookings/{booking}', [BookingController::class, 'update']);
         Route::delete('/bookings/{booking}', [BookingController::class, 'destroy']);
+
+        // Customer Service Routes
+        Route::get('user/services', [CustomerServiceController::class, 'index'])->name('customer.services.index');
+        Route::get('user/services/{service}', [CustomerServiceController::class, 'show'])->name('customer.services.show');
     });
 
     // Admin routes (will be added later)
