@@ -4,6 +4,7 @@ import { getAdminDashboard } from '../api/dashboard';
 import { useNavigate } from 'react-router-dom';
 import CreateServiceForm from '../components/admin/CreateServiceForm';
 import ServiceList from '../components/admin/ServiceList';
+import BookingList from '../components/admin/BookingList';
 
 export default function AdminDashboard() {
     const [user, setUser] = useState(null);
@@ -203,6 +204,8 @@ export default function AdminDashboard() {
                         </div>
                     )}
                 </div>
+                {/* Booking List Section */}
+                <BookingList />
             </main>
         </div>
     );
