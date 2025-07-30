@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getUser, logout } from '../api/auth';
 import { getCustomerDashboard } from '../api/dashboard';
 import { useNavigate } from 'react-router-dom';
+import ServiceListViewer from '../components/customer/ServiceListViewer';
 
 export default function CustomerDashboard() {
     const [user, setUser] = useState(null);
@@ -22,7 +23,7 @@ export default function CustomerDashboard() {
 
                 // Check if user is customer
                 if (userResult.data.data.role !== 'customer') {
-                    navigate('/admin/dashboard');
+                    navigate('/customer/dashboard');
                     return;
                 }
 
@@ -49,7 +50,6 @@ export default function CustomerDashboard() {
             localStorage.removeItem('token');
             navigate('/');
         } catch (err) {
-            // Force logout anyway
             localStorage.removeItem('token');
             navigate('/');
         }
@@ -108,7 +108,6 @@ export default function CustomerDashboard() {
                 </div>
             </header>
 
-            {/* Main Content */}
             <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
                 <div className="px-4 py-6 sm:px-0">
                     {/* Welcome Section */}
@@ -117,124 +116,67 @@ export default function CustomerDashboard() {
                             <h2 className="text-lg font-medium text-[#1b1b18] dark:text-[#EDEDEC] mb-2">
                                 Welcome back, {user?.name}!
                             </h2>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">
-                                Here's an overview of your account activity.
-                            </p>
-                        </div>
-                    </div>
 
-                    {/* Stats Grid */}
-                    {dashboardData && (
-                        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                            <div className="bg-white dark:bg-[#1a1a1a] overflow-hidden shadow rounded-lg">
-                                <div className="p-5">
-                                    <div className="flex items-center">
-                                        <div className="flex-shrink-0">
-                                            <div className="w-8 h-8 bg-blue-600 rounded-md flex items-center justify-center">
-                                                <span className="text-white text-sm font-bold">📦</span>
-                                            </div>
-                                        </div>
-                                        <div className="ml-5 w-0 flex-1">
-                                            <dl>
-                                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">
-                                                    Total Orders
-                                                </dt>
-                                                <dd className="text-lg font-medium text-[#1b1b18] dark:text-[#EDEDEC]">
-                                                    {dashboardData.total_orders}
-                                                </dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
+                            {/* Navigation Links/Buttons */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+                                <button className="flex items-center justify-center px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 shadow-sm">
+                                    My Orders
+                                </button>
+
+                                <button className="flex items-center justify-center px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all duration-200 shadow-sm">
+                                    New Order
+                                </button>
+
+                                <button className="flex items-center justify-center px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors duration-200 shadow-sm">
+                                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    Track Progress
+                                </button>
+
+                                <button className="flex items-center justify-center px-4 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors duration-200 shadow-sm">
+                                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                    Settings
+                                </button>
                             </div>
 
-                            <div className="bg-white dark:bg-[#1a1a1a] overflow-hidden shadow rounded-lg">
-                                <div className="p-5">
-                                    <div className="flex items-center">
-                                        <div className="flex-shrink-0">
-                                            <div className="w-8 h-8 bg-yellow-600 rounded-md flex items-center justify-center">
-                                                <span className="text-white text-sm font-bold">⏳</span>
-                                            </div>
-                                        </div>
-                                        <div className="ml-5 w-0 flex-1">
-                                            <dl>
-                                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">
-                                                    Pending Orders
-                                                </dt>
-                                                <dd className="text-lg font-medium text-[#1b1b18] dark:text-[#EDEDEC]">
-                                                    {dashboardData.pending_orders}
-                                                </dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {/* Additional Quick Actions */}
+                            <div className="mt-6 flex flex-wrap gap-3">
+                                <a href="#" className="inline-flex items-center px-3 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+                                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    View Invoices
+                                </a>
 
-                            <div className="bg-white dark:bg-[#1a1a1a] overflow-hidden shadow rounded-lg">
-                                <div className="p-5">
-                                    <div className="flex items-center">
-                                        <div className="flex-shrink-0">
-                                            <div className="w-8 h-8 bg-green-600 rounded-md flex items-center justify-center">
-                                                <span className="text-white text-sm font-bold">✅</span>
-                                            </div>
-                                        </div>
-                                        <div className="ml-5 w-0 flex-1">
-                                            <dl>
-                                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">
-                                                    Completed Orders
-                                                </dt>
-                                                <dd className="text-lg font-medium text-[#1b1b18] dark:text-[#EDEDEC]">
-                                                    {dashboardData.completed_orders}
-                                                </dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                <a href="#" className="inline-flex items-center px-3 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+                                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                    Payment Methods
+                                </a>
 
-                            <div className="bg-white dark:bg-[#1a1a1a] overflow-hidden shadow rounded-lg">
-                                <div className="p-5">
-                                    <div className="flex items-center">
-                                        <div className="flex-shrink-0">
-                                            <div className="w-8 h-8 bg-purple-600 rounded-md flex items-center justify-center">
-                                                <span className="text-white text-sm font-bold">💰</span>
-                                            </div>
-                                        </div>
-                                        <div className="ml-5 w-0 flex-1">
-                                            <dl>
-                                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">
-                                                    Total Spent
-                                                </dt>
-                                                <dd className="text-lg font-medium text-[#1b1b18] dark:text-[#EDEDEC]">
-                                                    ${dashboardData.total_spent}
-                                                </dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
+                                <a href="#" className="inline-flex items-center px-3 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+                                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                    </svg>
+                                    Documentation
+                                </a>
 
-                    {/* Recent Activity */}
-                    <div className="bg-white dark:bg-[#1a1a1a] shadow overflow-hidden sm:rounded-md mt-6">
-                        <div className="px-4 py-5 sm:px-6">
-                            <h3 className="text-lg leading-6 font-medium text-[#1b1b18] dark:text-[#EDEDEC]">
-                                Recent Activity
-                            </h3>
-                            <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-400">
-                                Your latest orders and activities.
-                            </p>
-                        </div>
-                        <div className="border-t border-gray-200 dark:border-gray-600">
-                            <div className="px-4 py-4 sm:px-6">
-                                <p className="text-sm text-gray-500 dark:text-gray-400">
-                                    No recent activity to display.
-                                </p>
+                                <a href="#" className="inline-flex items-center px-3 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+                                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                                    </svg>
+                                    Support
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
+                <ServiceListViewer />
             </main>
         </div>
     );

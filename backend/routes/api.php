@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\BookingController as AdminBookingController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Customer\BookingController;
+use App\Http\Controllers\Customer\ServiceController as CustomerServiceController;
 use Illuminate\Support\Facades\Route;
 
 // Public Router
@@ -18,22 +20,20 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Customer routes (will be added later)
     Route::middleware('role:customer')->group(function () {
-        Route::get('/dashboard', function () {
-            return response()->json([
-                'success' => true,
-                'message' => 'Welcome to customer Dashboard',
-            ]);
-        });
+        // Customer Booking Routes
+        Route::get('/bookings', [BookingController::class, 'index']);
+        Route::post('/bookings', [BookingController::class, 'store']);
+        Route::get('/bookings/{booking}', [BookingController::class, 'show']);
+        Route::put('/bookings/{booking}', [BookingController::class, 'update']);
+        Route::delete('/bookings/{booking}', [BookingController::class, 'destroy']);
+
+        // Customer Service Routes
+        Route::get('user/services', [CustomerServiceController::class, 'index'])->name('customer.services.index');
+        Route::get('user/services/{service}', [CustomerServiceController::class, 'show'])->name('customer.services.show');
     });
 
     // Admin routes (will be added later)
     Route::middleware('role:admin')->group(function () {
-        Route::get('/dashboard', function () {
-            return response()->json([
-                'success' => true,
-                'message' => 'Welcome to Admin Dashboard',
-            ]);
-        });
         // Admin Service Management
         Route::post('/services', [AdminServiceController::class, 'store'])->name('admin.services.store');
         Route::put('/services/{service}', [AdminServiceController::class, 'update'])->name('admin.services.update');

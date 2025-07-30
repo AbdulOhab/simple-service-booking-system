@@ -16,20 +16,23 @@ class BookingResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'booking_date' => $this->booking_date->format('Y-m-d'),
-            'status' => $this->status,
-            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            'service' => [
+                'id' => $this->service->id,
+                'name' => $this->service->name,
+                'description' => $this->service->description,
+                'price' => number_format($this->service->price, 2),
+            ],
             'customer' => [
                 'id' => $this->user->id,
                 'name' => $this->user->name,
                 'email' => $this->user->email,
             ],
-            'service' => [
-                'id' => $this->service->id,
-                'name' => $this->service->name,
-                'price' => number_format($this->service->price, 2),
-                'status' => $this->service->status,
-            ],
+            'booking_date' => $this->booking_date->format('Y-m-d'),
+            'total_amount' => number_format($this->total_amount, 2),
+            'status' => $this->status,
+            'status_label' => ucfirst($this->status),
+            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
         ];
     }
 }
