@@ -11,22 +11,6 @@ This project is a comprehensive service booking system that allows:
 - **Role-based authentication** with secure API endpoints
 - **Modern, responsive UI** with real-time updates
 
-## Architecture
-
-```
-┌─────────────────┐    HTTP/API    ┌─────────────────┐
-│                 │   Requests     │                 │
-│  React Frontend │ ◄────────────► │ Laravel Backend │
-│   (Port 5173)   │                │   (Port 8000)   │
-│                 │                │                 │
-└─────────────────┘                └─────────────────┘
-                                            │
-                                            ▼
-                                   ┌─────────────────┐
-                                   │      Database   │
-                                   └─────────────────┘
-```
-
 ## Tech Stack
 
 ### Backend
@@ -44,7 +28,7 @@ This project is a comprehensive service booking system that allows:
 - **State Management**: Redux Toolkit
 - **HTTP Client**: Axios
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 simple-service-booking-system/
@@ -159,7 +143,7 @@ npm run dev
 - ✅ Responsive design
 - ✅ Modern UI with TailwindCSS
 
-### 📋 **API Endpoints Status**
+### **API Endpoints Status**
 
 | Endpoint                   | Method          | Status     | Frontend Integration |
 | -------------------------- | --------------- | ---------- | -------------------- |
@@ -179,5 +163,13 @@ npm run dev
 ## Repository Information
 
 **Repository**: [[GitHub](https://github.com/AbdulOhab/simple-service-booking-system.git)]
+
+---
+
+### Dev Details
+
+**Name**: Abdul Wahab  
+**Email**: [abdulohab059@gmail.com](mailto:abdulohab059@gmail.com)  
+**GitHub**: [@AbdulOhab](https://github.com/AbdulOhab)
 
 _Developed as part of Mid-Level Laravel Developer Task - July 2025_
